@@ -1,0 +1,17 @@
+<h1>Registration Form</h1>
+
+<%= form_for @user, :url => { :action => "create" } do |f| %>
+  <%= f.label 'email' %>
+  <%= f.text_field :email %><br>
+  <%= f.label 'name' %>
+  <%= f.text_field :name %><br>
+  <%= f.label 'password' %>
+  <%= f.password_field :password %><br>
+  <%= f.label 'password_confirmation' %>
+  <%= f.password_field :password_confirmation, name: 'Password Confirmation' %><br>
+  <%= submit_tag 'Join' %>
+<% end %>
+
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %>

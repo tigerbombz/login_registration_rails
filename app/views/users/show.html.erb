@@ -1,0 +1,29 @@
+<h1>Welcome to your profile page</h1>
+<h2><%=@user.name%></h2>
+<a href="/users/<%= @user.id %>/edit">Edit Profile</a>
+
+
+<h4>New Secret</h4>
+<%= form_for @secret, :url => { controller: "secrets", :action => "create" } do |f| %>
+
+ <%= f.text_area(:content, size: '50x10')%>
+ <%= submit_tag 'Create Secret' %>
+<% end %>
+
+<div class="secrets" >
+  <% @secrets.each do |s| %>
+  <h4>Secrets</h4>
+  <p><%= s.content %></p>
+  <p><%= s.likes.count %> likes</p>
+  <form action="/secrets/<%=s.id%>" method="post">
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <input type="hidden" value="delete" name="_method">
+    <input type="submit" value="Delete">
+  </form>
+  <% end %>
+</div>
+<hr>
+
+<div class="secrets_liked">
+  <h4>Secrets Liked</h4>
+</div>

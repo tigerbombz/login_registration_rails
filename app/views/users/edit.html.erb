@@ -1,0 +1,23 @@
+<h1>Edit Profile Page</h1>
+
+<%= form_for @user, :url => { :action => "update" } do |f| %>
+  <%= f.label 'email' %>
+  <%= f.text_field :email %><br>
+  <%= f.label 'name' %>
+  <%= f.text_field :name %><br>
+  <%= f.label 'password' %>
+  <%= f.password_field :password %><br>
+  <%= f.label 'password_confirmation' %>
+  <%= f.password_field :password_confirmation, name: 'Password Confirmation' %><br>
+  <%= submit_tag 'Update' %>
+<% end %>
+<% if flash[:answer] %>
+  <%= flash[:answer] %>
+<% end %>
+
+<form action="/users/<%=@user.id%>" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="hidden" value="delete" name="_method">
+  <input type="submit" value="Delete Account">
+
+</form>

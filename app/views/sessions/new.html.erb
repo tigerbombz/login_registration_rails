@@ -1,0 +1,13 @@
+<h1>Login Please</h1>
+<%= form_for @session, :url => { :action => "create" } do |f| %>
+  <%= f.label 'email' %>
+  <%= f.text_field :email %><br>
+  <%= f.label 'password' %>
+  <%= f.password_field :password %><br>
+  <%= submit_tag 'Login' %>
+<% end %>
+
+<% if flash[:errors] %>
+  <%= flash[:errors] %>
+<% end %>
+
